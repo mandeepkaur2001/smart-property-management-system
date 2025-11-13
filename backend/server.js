@@ -10,6 +10,8 @@ import Property from "./models/propertyModel.js";
 import Lease from "./models/leaseModel.js";
 import mockPaymentRoutes from "./mock-payment.js";
 import leaseRoutes from "./routes/lease.js";
+import EnergyReading from "./models/energyDataModel.js";
+import "./iot-energy-sim.js";
 
 
 dotenv.config();
@@ -180,6 +182,38 @@ app.get("/api/tenant/lease/:tenantId", async (req, res) => {
     const lease = await Lease.findOne({ tenantId: req.params.tenantId }).populate("propertyId");
     if (!lease) return res.status(404).json({ msg: "Lease not found" });
     res.json({ lease });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+});
+
+// Get live energy data (last N readings for each property)
+app.get("/api/energy/live", async (req, res) => {
+  try {
+    const readings = await EnergyReading.find()
+      .sort({ timestamp: -1 })
+      .limit(100); // last 100 readings overall
+    res.json(readings);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+});
+
+// Get summary data (for Lambda)
+app.get("/api/energy/summary", async (req, res) => {
+  try {
+    const summary = await EnergyReading.aggregate([
+      {
+        $group: {
+          _id: "$propertyId",
+          avg_kWh: { $avg: "$power_kWh" },
+          avg_temp: { $avg: "$temp_C" },
+          avg_humidity: { $avg: "$humidity" },
+          readings: { $sum: 1 },
+        },
+      },
+    ]);
+    res.json(summary);
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }

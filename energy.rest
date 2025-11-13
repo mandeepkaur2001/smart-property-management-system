@@ -1,0 +1,11 @@
+### Get live energy data
+GET http://localhost:4000/api/energy/live
+Content-Type: application/json
+
+###
+
+### Get energy summary / analytics
+GET http://localhost:4000/api/energy/summary
+Content-Type: application/json
+
+###

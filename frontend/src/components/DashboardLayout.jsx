@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }) {
       <header className="bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center h-16">
           <Link href="/" className="text-xl font-bold text-blue-700">
-            🏢 Smart PMS
+            Smart PMS
           </Link>
 
           <nav className="flex items-center space-x-6">
