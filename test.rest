@@ -1,0 +1,69 @@
+
+### ✅ Health Check
+GET http://localhost:4000/
+
+### 👤 Register a Manager
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+  "name": "Alice Manager",
+  "email": "alice@pms.com",
+  "password": "manager123",
+  "role": "manager"
+}
+
+### 👤 Register a Tenant
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+  "name": "Bob Tenant",
+  "email": "bob@tenant.com",
+  "password": "tenant123",
+  "role": "tenant"
+}
+
+### 🏠 Add Property (Manager)
+POST http://localhost:4000/api/properties
+Content-Type: application/json
+
+{
+  "name": "Sunrise Villa 1A",
+  "location": "Downtown Green Zone",
+  "rent": 12000
+}
+
+### 🏠 Get All Properties
+GET http://localhost:4000/api/properties
+
+### 💳 Simulate Adding Card to Tenant (temporary via DB insert)
+# (If not yet built UI for this, use MongoDB Compass to push a card object under user.cards[])
+# Example document snippet for tenant:
+# {
+#   "cardId": "card-001",
+#   "last4": "4242",
+#   "brand": "VISA",
+#   "expiryMonth": 12,
+#   "expiryYear": 2030,
+#   "cvvHash": "xyz"
+# }
+
+### 💳 Mock Payment using Saved Card
+POST http://localhost:4000/api/payments/mock
+Content-Type: application/json
+
+{
+  "userId": "PUT_TENANT_USER_ID_HERE",
+  "cardId": "card-001",
+  "amount": 12000
+}
+
+### 🧾 Tenant Request Property (placeholder route for now)
+POST http://localhost:4000/api/tenant/request
+Content-Type: application/json
+
+{
+  "tenantId": "PUT_TENANT_USER_ID_HERE",
+  "propertyId": "PUT_PROPERTY_ID_HERE"
+}

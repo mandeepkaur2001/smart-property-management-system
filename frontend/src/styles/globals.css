@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #2563eb; /* Tailwind blue-600 */
+  --primary-hover: #1e40af;
+  --bg: #f9fafb;
+  --text: #1f2937;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+a {
+  color: var(--primary);
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}

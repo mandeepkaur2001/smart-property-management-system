@@ -1,0 +1,98 @@
+### 1️⃣ Register Manager
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+  "name": "Manager One",
+  "email": "manager@example.com",
+  "password": "pass123",
+  "role": "manager"
+}
+
+### 2️⃣ Register Tenant
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+  "name": "Tenant One",
+  "email": "tenant@example.com",
+  "password": "pass123",
+  "role": "tenant"
+}
+
+### 3️⃣ Add Property (Manager)
+POST http://localhost:4000/api/properties
+Content-Type: application/json
+
+{
+  "name": "Sunrise Residency",
+  "location": "Downtown Block A",
+  "initialPrice": 12000,
+  "rent": 1500
+}
+
+### 4️⃣ List All Properties
+GET http://localhost:4000/api/properties
+
+### 5️⃣ Tenant Requests Property
+POST http://localhost:4000/api/tenant/request
+Content-Type: application/json
+
+{
+  "tenantId": "691349fa6d60fe13f00675d6",
+  "propertyId": "69134e2a6429c53af2b03fc9"
+}
+
+### seeing requests response
+
+{
+  "requests": [
+    {
+      "_id": "69134e2a6429c53af2b03fc9",
+      "name": "Sunrise Residency",
+      "location": "Downtown Block A",
+      "status": "requested",
+      "tenantId": {
+        "_id": "691349fa6d60fe13f00675d6",
+        "name": "Tenant One",
+        "email": "tenant@example.com"
+      }
+    }
+  ]
+}
+
+
+### 6️⃣ Manager Approves Property & Creates Lease
+POST http://localhost:4000/api/manager/approve
+Content-Type: application/json
+
+{
+  "propertyId": "69134e2a6429c53af2b03fc9"
+}
+
+### 7️⃣ Tenant Saves Card
+POST http://localhost:4000/api/cards/save
+Content-Type: application/json
+
+{
+  "userId": "691349fa6d60fe13f00675d6",
+  "cardNumber": "5555444433331111",
+  "brand": "Mastercard",
+  "expiryMonth": 11,
+  "expiryYear": 2027,
+  "cvv": "321"
+}
+
+### 8️⃣ Mock Payment (Initial Deposit or Rent)
+POST http://localhost:4000/api/payments/mock
+Content-Type: application/json
+
+{
+  "userId": "691349fa6d60fe13f00675d6",
+  "cardId": "34d0438c-14a0-4ce3-b6a3-744b0697214b",
+  "propertyId": "69134e2a6429c53af2b03fc9",
+  "amount": 12000
+}
+
+### 9️⃣ Verify Payment Collection (optional)
+GET http://localhost:4000/api/properties
