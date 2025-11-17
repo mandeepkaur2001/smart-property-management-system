@@ -59,6 +59,16 @@ npm install
 cd ../frontend
 npm install
 ```
+#### Configure Mongosh to Automatically delete the energyreadings after 5 minutes using TTL indexing
+
+Enter into mongo shell: `mongosh`
+
+```sh
+use spms
+db.energyreadings.dropIndexes()
+db.energyreadings.createIndex({ timestamp: 1 }, { expireAfterSeconds: 300 })
+db.energyreadings.getIndexes()
+```
 
 ---
 
