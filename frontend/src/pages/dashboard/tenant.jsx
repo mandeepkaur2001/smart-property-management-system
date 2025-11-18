@@ -152,7 +152,7 @@ export default function TenantDashboard() {
                     <div key={p._id} className="border p-3 rounded shadow-sm">
                       <h4 className="font-bold">{p.name}</h4>
                       <p>{p.location}</p>
-                      <p>₹{p.rent} / month</p>
+                      <p>${p.rent} / month</p>
                     </div>
                   ))}
               </div>
@@ -173,7 +173,7 @@ export default function TenantDashboard() {
                   .filter((p) => p.status === "available")
                   .map((p) => (
                     <option key={p._id} value={p._id}>
-                      {p.name} — ₹{p.rent}
+                      {p.name} — ${p.rent}
                     </option>
                   ))}
               </select>
@@ -256,7 +256,7 @@ export default function TenantDashboard() {
               {expanded && (
                 <>
                   <p>{lease.propertyId.location}</p>
-                  <p>Rent: ₹{lease.monthlyRent}</p>
+                  <p>Rent: ${lease.monthlyRent}</p>
 
                   <h4 className="font-semibold mt-4 mb-2">Payment History</h4>
                   <table className="w-full text-left border-collapse">
@@ -272,7 +272,7 @@ export default function TenantDashboard() {
                         payments.map((p, i) => (
                           <tr key={i} className="border-b">
                             <td className="py-2">{p.month}</td>
-                            <td className="py-2">₹{p.amount}</td>
+                            <td className="py-2">${p.amount}</td>
                             <td
                               className={`py-2 font-semibold ${
                                 p.status === "Paid"
@@ -314,7 +314,7 @@ export default function TenantDashboard() {
                     : "bg-green-600 text-white hover:bg-green-700"
                 }`}
               >
-                Pay Initial Price: ₹{lease.totalAmount}
+                Pay Initial Price: ${lease.totalAmount}
               </button>
 
               {/* Monthly Rent */}
@@ -334,7 +334,7 @@ export default function TenantDashboard() {
                     : "bg-blue-600 text-white hover:bg-blue-700"
                 }`}
               >
-                Pay Monthly Rent: ₹{lease.monthlyRent}
+                Pay Monthly Rent: ${lease.monthlyRent}
               </button>
             </div>
           )}

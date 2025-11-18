@@ -27,7 +27,7 @@ export default function Home() {
           >
             <h3 className="text-xl font-semibold text-gray-800 mb-2">{prop.name}</h3>
             <p className="text-gray-500 mb-1">{prop.location}</p>
-            <p className="text-green-600 font-semibold mb-1">Rent: ₹{prop.rent}</p>
+            <p className="text-green-600 font-semibold mb-1">Rent: ${prop.rent}</p>
             <p className="text-sm text-gray-600">Status: {prop.status}</p>
           </div>
         ))}

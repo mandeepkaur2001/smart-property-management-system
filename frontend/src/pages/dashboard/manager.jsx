@@ -212,7 +212,7 @@ export default function ManagerDashboard() {
                       <h4 className="font-bold">{p.name}</h4>
                       <p className="text-gray-600">{p.location}</p>
                       <p className="text-sm text-gray-700">
-                        Rent: <span className="font-semibold">₹{p.rent}</span>
+                        Rent: <span className="font-semibold">${p.rent}</span>
                       </p>
                       <p
                         className={`text-sm font-semibold ${
