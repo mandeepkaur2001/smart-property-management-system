@@ -17,11 +17,14 @@ import "./iot-energy-sim.js";
 dotenv.config();
 connectDB();
 
+
 const app = express();
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: ["http://44.192.80.14:3000", "http://localhost:3000"],
   credentials: true,
-}));
+ }));
+
+// app.use(cors());
 
 app.use(express.json());
 app.use(mockPaymentRoutes);

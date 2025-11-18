@@ -7,7 +7,8 @@ export default function Home() {
   const [page, setPage] = useState(1);
 
   const fetchProps = async (pg = 1) => {
-    const res = await axios.get(`http://localhost:4000/api/properties?page=${pg}`);
+    // const res = await axios.get(`http://localhost:4000/api/properties?page=${pg}`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/api/properties?page=${pg}`);
     setProperties(res.data.properties || res.data);
   };
 

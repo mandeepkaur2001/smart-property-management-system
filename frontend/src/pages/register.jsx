@@ -8,7 +8,8 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:4000/api/register", form);
+   // await axios.post("http://localhost:4000/api/register", form);
+    await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/api/register`, form);
     alert("Registration successful!");
   };
 
